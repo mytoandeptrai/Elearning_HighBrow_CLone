@@ -165,7 +165,145 @@ const ModalKhoaHoc = ({ title, handleClose, taiKhoan, setDone, khoaHoc }) => {
   const danhMucKhoaHoc = useSelector(
     (state) => state.categoriesData.danhMucKhoaHoc
   );
-  return <>ModalKhoaHoc</>;
+  return (
+    <>
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <Grid container className={classes.grid} spacing={1}>
+          <Grid item xs={12} className={classes.title}>
+            <h3 className="text-center">
+              {title ? "Thêm khóa học" : "Sửa khóa học"}
+            </h3>
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <TextField
+              id="outlined-basic"
+              label="Tên khóa học"
+              variant="outlined"
+              onChange={handleChange}
+              name="tenKhoaHoc"
+              value={thongTinKhoaHoc.tenKhoaHoc}
+            />
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <TextField
+              id="outlined-basic"
+              label="Mã Khóa học"
+              variant="outlined"
+              onChange={handleChange}
+              name="maKhoaHoc"
+              value={thongTinKhoaHoc.maKhoaHoc}
+            />
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Chọn danh mục
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                name="maDanhMucKhoahoc"
+                onChange={handleChange}
+                label="Chọn danh mục"
+                value={thongTinKhoaHoc.maDanhMucKhoahoc}
+              >
+                {danhMucKhoaHoc.map((danhMuc, item) => {
+                  return (
+                    <MenuItem value={danhMuc.maDanhMuc}>
+                      {danhMuc.tenDanhMuc}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <TextField
+              id="outlined-basic"
+              label="Bí danh"
+              variant="outlined"
+              name="biDanh"
+              onChange={handleChange}
+              value={thongTinKhoaHoc.biDanh}
+            />
+          </Grid>
+
+          <Grid item xs={12} className={classes.gridItem}>
+            <TextField
+              id="outlined-basic"
+              label="Mô tả"
+              variant="outlined"
+              onChange={handleChange}
+              name="moTa"
+              value={thongTinKhoaHoc.moTa}
+            />
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <TextField
+              id="outlined-basic"
+              label="Lượt xem"
+              variant="outlined"
+              onChange={handleChange}
+              name="luotXem"
+              value={thongTinKhoaHoc.luotXem}
+            />
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <TextField
+              id="outlined-basic"
+              label="Đánh giá"
+              variant="outlined"
+              onChange={handleChange}
+              name="danhGia"
+              value={+thongTinKhoaHoc.danhGia}
+            />
+          </Grid>
+          <Grid item xs={12} className={classes.dropzone}>
+            <div className="container">
+              <h4 className="text-center">Upload hình ảnh</h4>
+              <div className="dropzone_css">
+                <CloudUploadOutlinedIcon />
+                <input
+                  type="file"
+                  onChange={handleChange}
+                  name="hinhAnh"
+                  className="btn"
+                />
+                {isDragActive ? <p>Kéo thả file vào đây</p> : ""}
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              {title ? "Thêm khóa học" : "Sửa khóa học"}
+            </Button>
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                handleClear();
+              }}
+            >
+              Thoát
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </>
+  );
 };
 
 export default ModalKhoaHoc;

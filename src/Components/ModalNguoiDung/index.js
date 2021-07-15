@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Modal } from "antd";
 //Thư viện formik
 import { Field, Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 //Thư viện yub (validate form)

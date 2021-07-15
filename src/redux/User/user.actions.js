@@ -164,6 +164,36 @@ export const huyDangKyKhoaHocAction = (taiKhoan, maKhoaHoc) => {
   };
 };
 
+export const ghiDanhKhoaHocAction = (taiKhoan, maKhoaHoc) => {
+  return async (dispatch) => {
+    try {
+      const { accessToken } = JSON.parse(localStorage.getItem(USER_LOGIN));
+      axios({
+        url: DOMAIN + "api/QuanLyKhoaHoc/GhiDanhKhoaHoc",
+        method: "POST",
+        data: {
+          maKhoaHoc: maKhoaHoc,
+          taiKhoan: taiKhoan,
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }).then((res) => {
+        let { status } = res;
+        if (status === 200) {
+          swal("Thành công", "Ghi danh thành công", "success");
+          // dispatch({
+          //   type: "GHI_DANH_KHOA_HOC",
+          //   maKhoaHoc: maKhoaHoc,
+          // });
+        }
+      });
+    } catch (error) {
+      console.log("đăng ký thất bại");
+    }
+  };
+};
+
 export const nguoiDungChinhSuaAction = (userChange, history, matKhau) => {
   return async (dispatch) => {
     try {

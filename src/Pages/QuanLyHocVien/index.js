@@ -143,8 +143,6 @@ const QuanLyHocVien = () => {
             Xóa
           </a>
           <a
-            href="#"
-            target="__blank"
             className="text-primary"
             onClick={() => {
               showModal(text.taiKhoan);
@@ -258,6 +256,17 @@ const QuanLyHocVien = () => {
             />
           )}
         </div>
+
+        <Modal
+          title="Thông tin khóa học"
+          visible={more}
+          okButtonProps={{ style: { display: "none" } }}
+          onCancel={handleCancel}
+          cancelText="Hủy bỏ"
+          className="modal_course"
+        >
+          <TabNguoiDungModal data={dataModal} />
+        </Modal>
       </div>
     </>
   );
