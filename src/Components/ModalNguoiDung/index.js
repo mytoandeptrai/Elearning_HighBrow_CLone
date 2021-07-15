@@ -142,20 +142,10 @@ const ModalNguoiDung = ({
       }
     }
   };
-
-  const userValues = userEdit
-    ? {
-        ...userEdit,
-        soDT: userEdit.soDt,
-        maNhom: "GP12",
-        matKhau: "",
-      }
-    : thongTinUser;
-  console.log(userValues);
-
+  console.log(thongTinUser);
   return (
     <>
-      <Formik initialValues={userValues} validationSchema={validationSchema}>
+      <Formik initialValues={thongTinUser} validationSchema={validationSchema}>
         {(formilkProps) => {
           let { values, errors, touched } = formilkProps;
           console.log(values);

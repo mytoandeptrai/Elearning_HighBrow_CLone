@@ -73,25 +73,6 @@ const QuanLyHocVien = () => {
     setIsModalVisible(false);
     handleClose();
   };
-  //Thong tin user
-  const [thongTinUser, setThongTinUser] = useState({
-    taiKhoan: "",
-    matKhau: "",
-    hoTen: "",
-    soDT: "",
-    maNhom: "GP12",
-    email: "",
-    maLoaiNguoiDung: "",
-  });
-  const initialValues = userEdit
-    ? {
-        ...userEdit,
-        soDT: userEdit.soDt,
-        maNhom: "GP12",
-        matKhau: "",
-      }
-    : thongTinUser;
-  console.log(initialValues);
   //column and data table
   const columns = [
     {
