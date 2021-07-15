@@ -1,0 +1,27 @@
+/* const handleSubmit = (formilkProps) => {
+    const resetForm = () => {
+      formilkProps.values.taiKhoan = "";
+      formilkProps.values.hoTen = "";
+      formilkProps.values.soDT = "";
+      formilkProps.values.matKhau = "";
+      formilkProps.values.email = "";
+      formilkProps.values.maLoaiNguoiDung = "";
+    };
+    if (
+      formilkProps.values.email === "" ||
+      formilkProps.values.hoTen === "" ||
+      formilkProps.values.maLoaiNguoiDung === "" ||
+      formilkProps.values.matKhau === "" ||
+      formilkProps.values.soDT === "" ||
+      formilkProps.values.taiKhoan === ""
+    ) {
+      swal("Oops!", "Bạn cần phải nhập đầy đủ thông tin vào form!", "error");
+      handleCancel();
+    } else {
+      //   dispatch(addUserAction(formilkProps.values, setDone));
+      //   setTimeout(() => resetForm(values), 300);
+      console.log(formilkProps.values);
+      resetForm();
+      handleCancel();
+    }
+  }; */
