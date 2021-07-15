@@ -70,33 +70,6 @@ const ModalNguoiDung = ({
     maLoaiNguoiDung: "",
   });
 
-  useEffect(() => {
-    if (userEdit) {
-      setThongTinUser({
-        taiKhoan: userEdit.taiKhoan,
-        matKhau: "",
-        hoTen: userEdit.hoTen,
-        soDT: userEdit.soDt,
-        maNhom: "GP12",
-        email: userEdit.email,
-        maLoaiNguoiDung: userEdit.maLoaiNguoiDung,
-      });
-    }
-    if (title) {
-      setThongTinUser({
-        taiKhoan: "",
-        matKhau: "",
-        hoTen: "",
-        soDT: "",
-        maNhom: "GP12",
-        email: "",
-        maLoaiNguoiDung: "",
-      });
-    }
-  }, [userEdit]);
-
-  //   console.log(thongTinUser);
-
   const validationSchema = Yup.object().shape({
     // Validate form field
     taiKhoan: Yup.string()
@@ -114,6 +87,7 @@ const ModalNguoiDung = ({
   });
 
   const handleSubmit = (values) => {
+    console.log(values);
     const resetForm = () => {
       values.taiKhoan = "";
       values.hoTen = "";
@@ -142,13 +116,26 @@ const ModalNguoiDung = ({
       }
     }
   };
-  console.log(thongTinUser);
+
+  const initialValues = title
+    ? thongTinUser
+    : {
+        ...userEdit,
+        matKhau: "",
+        maNhom: "GP12",
+        soDT: userEdit.soDt,
+      };
+
   return (
     <>
-      <Formik initialValues={thongTinUser} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        enableReinitialize
+      >
         {(formilkProps) => {
           let { values, errors, touched } = formilkProps;
-          console.log(values);
+          console.log(formilkProps.initialValues);
           return (
             <>
               <Modal
@@ -175,6 +162,7 @@ const ModalNguoiDung = ({
                           name="taiKhoan"
                           render={({ field }) => (
                             <Input
+                              disabled={title ? false : true}
                               fullWidth
                               {...field}
                               value={formilkProps.values.taiKhoan}

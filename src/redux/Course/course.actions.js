@@ -123,3 +123,41 @@ export const khoaHocSearchAction = (tuKhoa) => {
     }
   };
 };
+
+export const deleteCourseAction = (maKhoaHoc, setDone) => {
+  return async (dispatch) => {
+    try {
+      const { accessToken } = JSON.parse(localStorage.getItem(USER_LOGIN));
+      swal({
+        title: "Bạn chắc chứ?",
+        text: "Khóa học này xóa không thể khôi phục lại!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          axios({
+            url: DOMAIN + `api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`,
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+            .then((res) => {
+              let { status } = res;
+              if (status === 200) {
+                swal("Thành công", "Xóa thành công", "success");
+              }
+              layDanhSachKhoaHocAction();
+              setDone(undefined);
+            })
+            .catch((err) => {
+              swal("Thất bại", "Không thể xóa khóa học này", "warning");
+            });
+        }
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};

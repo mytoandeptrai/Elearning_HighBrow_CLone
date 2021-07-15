@@ -7,7 +7,7 @@ import Dangnhap from "./Pages/DangNhap";
 import Home from "./Pages/Home";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import QuanLyHocVien from "./Pages/QuanLyHocVien";
-import QuanLyNguoiDung from "./Pages/QuanLyNguoiDung";
+import QuanLyKhoaHoc from "./Pages/QuanLyKhoaHoc";
 import TatCaKhoaHoc from "./Pages/TatCaKhoaHoc";
 import ThongTinTaiKhoan from "./Pages/ThongTinTaiKhoan";
 import AdminTemplate from "./Templates/AdminTemplate";
@@ -35,9 +35,13 @@ const App = () => {
           <AdminTemplate
             path="/admin/NguoiDungManager"
             exact
-            Component={QuanLyNguoiDung}
+            Component={QuanLyHocVien}
           />
-          <AdminTemplate path="/ad" exact Component={QuanLyHocVien} />
+          <AdminTemplate
+            path="/admin/KhoaHocManager"
+            exact
+            Component={QuanLyKhoaHoc}
+          />
           <HomeTemplate exact="*" Component={PageNotFound} />
         </Switch>
       </div>
